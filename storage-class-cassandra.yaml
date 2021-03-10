@@ -6,3 +6,41 @@
 #   annotations:
 #     storageclass.beta.kubernetes.io/is-default-class: "true"
 # provisioner: kubernetes.io/host-path
+
+---
+## This is for Minikube
+# kind: StorageClass
+# apiVersion: storage.k8s.io/v1
+# metadata:
+#   name: fast
+# provisioner: k8s.io/minikube-hostpath
+# parameters:
+#   type: pd-ssd
+
+---
+## This class is for Kind cluster
+
+# kind: StorageClass
+# apiVersion: storage.k8s.io/v1
+# metadata:
+#   namespace: kube-system
+#   name: standard
+#   annotations:
+#     storageclass.beta.kubernetes.io/is-default-class: "true"
+#   labels:
+#     addonmanager.kubernetes.io/mode: EnsureExists
+# provisioner: kubernetes.io/host-path
+
+---
+## This is for docker-desktop based K8s
+
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  namespace: kube-system
+  name: standard
+  annotations:
+    storageclass.beta.kubernetes.io/is-default-class: "false"
+  labels:
+    addonmanager.kubernetes.io/mode: EnsureExists
+provisioner: docker.io/hostpath
