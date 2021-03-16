@@ -1,0 +1,12 @@
+## This is for docker-desktop based K8s
+
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  namespace: kube-system
+  name: standard-local
+  annotations:
+    storageclass.beta.kubernetes.io/is-default-class: "false"
+  labels:
+    addonmanager.kubernetes.io/mode: EnsureExists
+provisioner: docker.io/hostpath
